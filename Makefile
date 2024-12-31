@@ -1,6 +1,6 @@
 CFLAGS     := -Werror -Wall -Wextra
 DFLAGS     := 
-LFLAGS     := -lXext -lX11 -lm -lbsd
+LFLAGS     := #-lXext -lX11 -lm -lbsd
 
 SRCS       := main.c system_exit.c system_init.c
 
@@ -10,14 +10,14 @@ SRCS       := main.c system_exit.c system_init.c
 
 NAME := fractol
 CC := cc
-MLX_DIR    := ./minilibx-linux
-MLX        := -L$(MLX) -lmlx
+MLX_PATH   := ./minilibx-linux
+# MLX        := -L$(MLX_PATH) -lmlx
 
 LIBFT_DIR  := libft
 LIBFT 	   := libft/libft.a
 
 
-INCDIR     :=  $(LIBFT) $(MLX_DIR)
+INCDIR     :=  $(LIBFT) $(MLX)
 
 all: $(NAME)
 

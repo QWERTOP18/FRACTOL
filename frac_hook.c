@@ -2,6 +2,7 @@
 
 
 
+
 int	mouse_hook(int button, int x, int y, t_sys *sys)
 {
 	if (button == SCROLL_UP || button == SCROLL_DOWN)
@@ -15,7 +16,7 @@ int	key_hook(int key, t_sys *sys)
 		exit_hook(sys);
 	if (key == UP || key == DOWN
 		|| key == LEFT || key == RIGHT)
-		;//todo bitMsk を使って簡潔に
+		move(sys, key, x, y);//todo bitMsk を使って簡潔に
 	return (0);
 }
 
