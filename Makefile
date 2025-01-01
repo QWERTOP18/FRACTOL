@@ -1,6 +1,7 @@
 CFLAGS      := -Werror -Wall #-Wextra
 
-SRCS        := main.c system.c
+SRCS        := main.c system.c hook_handler.c
+
 OBJS        := $(SRCS:.c=.o)
 
 NAME        := fractol
@@ -16,11 +17,16 @@ LFLAGS      := -L$(MLX_DIR) -lmlx -lXext -lX11
 
 all: $(NAME) 
 
+
+
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $@
+
+
+
 %.o: %.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
-
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(IFLAGS) $(LFLAGS) $(OBJS) $(LIBFT) -o $@
+	
 
 $(MLX): | $(MLX_DIR)
 	$(MAKE) -C $(MLX_DIR)
