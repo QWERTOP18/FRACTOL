@@ -6,26 +6,40 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 17:52:58 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 18:38:18 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
 
+int	calc_mandelbrot(t_sys *sys)
+{
+	return (1);
+}
+
+int	calc_julia(t_sys *sys)
+{
+	return (1);
+}
+
+typedef int	(*t_iterate_f)(t_sys *sys);
+
 void	calculate(t_sys *sys)
 {
-	t_complex c;
-	// static void **(*calculate)(t_sys * sys) = {calculate_mandelbrot,
-	// 	calculate_julia};
+	int					y;
+	int					x;
+	static t_iterate_f	iterate[] = {calc_mandelbrot, calc_julia};
 
-	c.im = 0;
-	while (c.im < SCREEN_HEIGHT)
+	y = 0;
+	while (y < SCREEN_HEIGHT)
 	{
-		c.re = 0;
-		while (c.re < SCREEN_WIDTH)
+		x = 0;
+		while (x < SCREEN_WIDTH)
 		{
-			c.re++;
+			if (sys->iter[x][y] == sys->sup_iteri)
+				sys->iter[x][y] += (iterate[sys->type])(sys);
+			x++;
 		}
-		c.im++;
+		y++;
 	}
 }
