@@ -6,7 +6,7 @@ DFLAGS     := -DDEBUG
 
 
 
-SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c
+SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c render.c
 
 OBJS        := $(SRCS:.c=.o)
 

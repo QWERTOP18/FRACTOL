@@ -6,21 +6,20 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:02:51 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 14:57:05 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 18:50:50 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook_handler.h"
 #include "system.h"
 
-
 int	loop_handler(t_sys *sys)
 {
-
-	//update_screen(sys);
+	// update_screen(sys);
 	// int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,
 	// 		int x,int y)
 	calculate(sys);
+	render(sys);
 	mlx_put_image_to_window(sys->mlx, sys->win, sys->img.img, 0, 0);
 	return (0);
 }

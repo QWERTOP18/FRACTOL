@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:09 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 17:59:00 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:08:02 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@
 
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
+
 # define DEFLT_ITER 10
+# define ITER_STEP 20
 
 # define MANDELBROT 0
 # define JULIA 1
@@ -81,5 +83,9 @@ t_sys			*system_init(char *arg);
 void			system_exit(t_sys *sys, int status);
 
 void			calculate(t_sys *sys);
+
+void			render_pixel(t_sys *sys, int x, int y, int color);
+
+unsigned		determine_color(int iter, t_sys *sys);
 
 #endif
