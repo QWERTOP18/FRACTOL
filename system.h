@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:09 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 14:34:04 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:11:04 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@
 # define E_WINDOW_CREATE -3
 # define E_INVALID_INPUT -4
 
-# define ERRMSG "PLEASE TYPE * mandelbrot\n* julia\n* burningship\n"
-# define OPTIONS "mandelbrot&#$~julia$#&&&"
+# define ERRMSG "PLEASE TYPE\n\t* mandelbrot\n\t* julia\n\t* burningship\n"
 
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
