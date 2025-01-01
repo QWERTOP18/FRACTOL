@@ -3,6 +3,7 @@
 #include <X11/keysym.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct s_xvar
 {
@@ -10,7 +11,7 @@ typedef struct s_xvar
 	void	*win;
 }			t_xvar;
 
-#define ESC 0xff1b
+#define ESC 0xFF1B
 
 typedef struct s_info
 {
@@ -19,17 +20,31 @@ typedef struct s_info
 	void	*img;
 }			t_info;
 
-int	event_handler(int key, void *v_info)
+//
+
+int	exit_handler(void *v_info)
 {
 	t_info	*info;
 
-	info = v_info;
-	printf("key  %x\n", key);
+	info = (t_info *)v_info;
+	mlx_destroy_window(info->mlx, info->win);
+	exit(0);
+	return (0);
+}
+
+int	key_handler(int key, void *v_info)
+{
+	t_info	*info;
+
+	info = (t_info *)v_info;
+	printf("key  %d\n", key);
 	if (key == ESC)
 	{
-		mlx_destroy_window(info->mlx, info->win);
-		exit(0);
+		// mlx_destroy_image(info->mlx, info->win);
+		exit_handler(info);
 	}
+	if (isalnum(key))
+		printf("char %c\n", key);
 	return (0);
 }
 
@@ -39,7 +54,7 @@ int	main(void)
 
 	info.mlx = mlx_init();
 	info.win = mlx_new_window(info.mlx, 1000, 1000, "Hello World");
-	mlx_hook(info.win, KeyPress, KeyPressMask, event_handler, info.mlx);
-	// mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(info.win, KeyPress, KeyPressMask, key_handler, &info);
+	mlx_hook(info.win, ClientMessage, StructureNotifyMask, exit_handler, &info);
 	mlx_loop(info.mlx);
 }
