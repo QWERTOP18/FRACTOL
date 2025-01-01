@@ -1,45 +1,47 @@
-CFLAGS     := -Werror -Wall -Wextra
-DFLAGS     := 
-LFLAGS     := #-lXext -lX11 -lm -lbsd
+CFLAGS      := -Werror -Wall #-Wextra
 
-SRCS       := main.c system_exit.c system_init.c
+SRCS        := main.c system.c
+OBJS        := $(SRCS:.c=.o)
 
-
-
-
-
-NAME := fractol
-CC := cc
-MLX_PATH   := ./minilibx-linux
-# MLX        := -L$(MLX_PATH) -lmlx
-
-LIBFT_DIR  := libft
-LIBFT 	   := libft/libft.a
+NAME        := fractol
+CC          := cc 
 
 
-INCDIR     :=  $(LIBFT) $(MLX)
+MLX			:= $(MLX_DIR)/libmlx.a
+MLX_DIR     := minilibx-linux
+LIBFT_DIR   := libft
+LIBFT       := libft/libft.a
+IFLAGS      := -I$(LIBFT_DIR) -I$(MLX_DIR)
+LFLAGS      := -L$(MLX_DIR) -lmlx -lXext -lX11
 
-all: $(NAME)
+all: $(NAME) 
 
 %.o: %.c
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(IFLAGS) $(LFLAGS) $(OBJS) $(LIBFT) -o $@
 
-$(MLX):
-	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_PATH)
-	make -C $(MLX_PATH)
+$(MLX): | $(MLX_DIR)
+	$(MAKE) -C $(MLX_DIR)
 
--include $(DEPS)
-$(NAME): $(MLX_PATH) $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_LIB) -I$(INCLIB) $(LFLAGS)
+$(MLX_DIR):
+	@echo "Cloning minilibx-linux..."
+	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
+
+$(LIBFT): | $(LIBFT_DIR)/Makefile
+	$(MAKE) -C $(LIBFT_DIR)
+
 
 clean:
-	
-
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
+	$(RM) $(OBJS)
 
 fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
 
 re: fclean all
 
-bonus: $(NAME)
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
