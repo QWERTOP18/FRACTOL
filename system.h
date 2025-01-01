@@ -30,6 +30,10 @@
 # define E_WINDOW_CREATE -3
 # define E_INVALID_INPUT -4
 
+
+#define DELTA 0.01
+
+
 # define ERRMSG "PLEASE TYPE\n\t* mandelbrot\n\t* julia\n\t* burningship\n"
 
 # define SCREEN_WIDTH 1000
@@ -56,6 +60,15 @@ typedef struct s_complex
 	double	im;
 }			t_complex;
 
+typedef struct s_screen
+{
+	double width;
+	double height;
+	t_complex base;//左下の点
+
+} t_screen;
+
+
 typedef struct s_sys
 {
 	void	*mlx;
@@ -63,7 +76,8 @@ typedef struct s_sys
 	t_simg	img;
 	int		type;
 	//      t_fractal_drawer	fractal_drawer;
-	t_complex coef; // hjkl keyで調整できるように todo
+	//t_complex coef; // hjkl keyで調整できるように todo
+	t_screen screen;
 
 }			t_sys;
 
