@@ -31,17 +31,18 @@
 # define E_INVALID_INPUT -4
 
 
-#define DELTA 0.01
+
 
 
 # define ERRMSG "PLEASE TYPE\n\t* mandelbrot\n\t* julia\n\t* burningship\n"
 
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
+# define DEFLT_ITER 10
 
-# define MANDELBROT 1
-# define JULIA 2
-# define BURNINGSHIP 3
+# define MANDELBROT 0
+# define JULIA 1
+# define BURNINGSHIP 2
 
 typedef struct s_simg
 {
@@ -64,10 +65,8 @@ typedef struct s_screen
 {
 	double width;
 	double height;
-	t_complex base;//左下の点
-
+	t_complex base;
 } t_screen;
-
 
 typedef struct s_sys
 {
@@ -75,10 +74,12 @@ typedef struct s_sys
 	void	*win;
 	t_simg	img;
 	int		type;
-	//      t_fractal_drawer	fractal_drawer;
-	//t_complex coef; // hjkl keyで調整できるように todo
-	t_screen screen;
+	//void	(*calculate)(t_sys *sys);
 
+	t_complex coef;
+	t_screen screen;
+	int iter[SCREEN_HEIGHT][SCREEN_WIDTH];
+	int sup_iteri;
 }			t_sys;
 
 t_sys		*system_init(char *arg);

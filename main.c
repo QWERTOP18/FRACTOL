@@ -13,13 +13,15 @@
 #include "hook_handler.h"
 #include "system.h"
 
-//なぜintなのか
+
 int	loop_handler(t_sys *sys)
 {
-	// update(sys);
+
+	//update_screen(sys);
 	// int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,
 	// 		int x,int y)
-	// mlx_put_image_to_window(sys->mlx, sys->win, sys->img.img, 0, 0);
+	calculate(sys);
+	mlx_put_image_to_window(sys->mlx, sys->win, sys->img.img, 0, 0);
 	return (0);
 }
 

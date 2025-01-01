@@ -29,6 +29,8 @@ t_sys	*system_init(char *arg)
 	if (!sys)
 		system_exit(NULL, E_ALLOCATE);
 	sys->type = identify_arg(arg, sys);
+	sys->sup_iteri = DEFLT_ITER;
+	ft_memset(sys->iter,0,sizeof(sys->iter));
 	sys->mlx = mlx_init();
 	if (!sys->mlx)
 		system_exit(NULL, E_MLX_INIT);
@@ -49,7 +51,7 @@ int	identify_arg(char *arg, t_sys *sys)
 		return (MANDELBROT);
 	if (ft_strncmp(arg, "julia", ft_strlen(arg)) == 0)
 		return (JULIA);
-	if (ft_strncmp(arg, "burning_ship", ft_strlen(arg)) == 0)
+	if (ft_strncmp(arg, "burningship", ft_strlen(arg)) == 0)
 		return (BURNINGSHIP);
 
 	ft_putendl_fd(ERRMSG, 2);
