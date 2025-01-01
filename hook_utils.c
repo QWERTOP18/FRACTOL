@@ -12,8 +12,10 @@ void	zoom_screen(t_sys *sys, double ratio, int x, int y)
 	screen.base.im = center.im + (screen.base.im - center.im) * ratio;
 	screen.width *= ratio;
 	screen.height *= ratio;
-	// sys.screen=screen;
+	sys->screen = screen;
 }
+
+#define DEBUG 1
 
 void	pan_screen(t_sys *sys, int id)
 {
@@ -21,16 +23,29 @@ void	pan_screen(t_sys *sys, int id)
 	static double	dx[4] = {-1, 0, 1, 0};
 	t_screen		screen;
 
+#ifdef DEBUG
+	printf("%s\n", __func__);
+#endif
 	screen = sys->screen;
 	screen.base.re += dy[id] * screen.width * DELTA;
 	screen.base.im += dx[id] * screen.height * DELTA;
+#ifdef DEBUG
+	printf("Pan: (%f, %f)\n", screen.base.re, screen.base.im);
+#endif
+	sys->screen = screen;
 }
 
 void	modify_coefficient(t_sys *sys, int id)
 {
+	printf("%s\n", __func__);
 	static double dy[4] = {-1, 0, 1, 0};
 	static double dx[4] = {0, -1, 0, 1};
 
 	sys->coef.im += dy[id];
 	sys->coef.re += dx[id];
+
+#ifdef DEBUG
+	printf("Coefficient: (%f, %f)\n", sys->coef.re, sys->coef.im);
+#endif
+
 }

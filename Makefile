@@ -1,4 +1,10 @@
 CFLAGS      := -Werror -Wall #-Wextra
+DFLAGS     := -DDEBUG
+
+
+
+
+
 
 SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c
 
@@ -20,12 +26,12 @@ all: $(NAME)
 
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $@
 
 
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(IFLAGS) -c $< -o $@
 	
 
 $(MLX): | $(MLX_DIR)
