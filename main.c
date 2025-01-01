@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:02:51 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 18:50:50 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:17:37 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	loop_handler(t_sys *sys)
 	// int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,
 	// 		int x,int y)
 	calculate(sys);
-	render(sys);
 	mlx_put_image_to_window(sys->mlx, sys->win, sys->img.img, 0, 0);
 	return (0);
 }
@@ -42,4 +41,5 @@ int	main(int argc, char **argv)
 	setup_hook(sys);
 
 	mlx_loop(sys->mlx);
+	system_exit(sys, 0);
 }

@@ -6,13 +6,13 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 19:04:22 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:22:36 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
 
-int	calc_mandelbrot(t_complex *c_num, const t_sys *sys)
+int	calc_mandelbrot(t_complex *c_num, t_sys *sys)
 {
 	int		i;
 	double	tmp;
@@ -25,16 +25,19 @@ int	calc_mandelbrot(t_complex *c_num, const t_sys *sys)
 		c_num->re = tmp;
 		if (c_num->im * c_num->im + c_num->re * c_num->re >= 4)
 			return (i);
+		i++;
 	}
 	return (i);
 }
 
-int	calc_julia(t_complex *c_num, const t_sys *sys)
+int	calc_julia(t_complex *c_num, t_sys *sys)
 {
 	return (1);
 }
 //                                    \---double point???? todo
 typedef int	(*t_iterate_f)(t_complex *c_num, t_sys *sys);
+
+#define DEBAG += 1
 
 void	calculate(t_sys *sys)
 {
@@ -49,8 +52,13 @@ void	calculate(t_sys *sys)
 		while (x < SCREEN_WIDTH)
 		{
 			if (sys->iter[x][y] == sys->sup_iteri)
-				sys->iter[x][y] += (iterate[sys->type])(&sys->val[y][x], sys);
-			render_pixcel(sys, x, y, determine_color(sys->iter[x][y], sys));
+				// sys->iter[x][y] += (*iterate[sys->type])(&sys->val[y][x],
+				//		sys);
+				sys->iter[x][y] = (*iterate[sys->type])(&sys->val[y][x], sys);
+			render_pixel(sys, x, y, determine_color(sys->iter[x][y], sys));
+#ifdef DEBUG
+			printf("iter %d\n", sys->iter[x][y]);
+#endif
 			x++;
 		}
 		y++;

@@ -12,7 +12,7 @@ OBJS        := $(SRCS:.c=.o)
 
 NAME        := fractol
 CC          := cc 
-
+VALGRIND    := valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q
 
 MLX			:= $(MLX_DIR)/libmlx.a
 MLX_DIR     := minilibx-linux
@@ -53,6 +53,9 @@ clean:
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
+
+val:
+	$(VALGRIND) ./fractol mandelbrot
 
 re: fclean all
 

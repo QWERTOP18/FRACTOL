@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:21 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 18:15:17 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:18:25 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_sys	*system_init(char *arg)
 	if (!sys)
 		system_exit(NULL, E_ALLOCATE);
 	sys->type = identify_arg(arg, sys);
-	sys->sup_iteri = DEFLT_ITER;
+	sys->sup_iteri = 0;
 	sys->screen.height = 8;
 	sys->screen.width = 8;
 	sys->mlx = mlx_init();
