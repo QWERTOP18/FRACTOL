@@ -6,24 +6,19 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:53 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 14:48:24 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 17:55:11 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook_handler.h"
 
-
-
-
-
-
 int	mouse_handler(int button, int x, int y, t_sys *sys)
 {
 	printf("key %X,x %d,y %d\n", button, x, y);
 	if (button == SCROLL_UP)
-	 	screen_zoom(sys, 1.25, x, y);
-	if ( button == SCROLL_DOWN)
-		screen_zoom(sys, 0.8, x, y);
+		zoom_screen(sys, 1.25, x, y);
+	if (button == SCROLL_DOWN)
+		zoom_screen(sys, 0.8, x, y);
 	return (0);
 }
 
@@ -36,7 +31,6 @@ int	key_handler(int key, t_sys *sys)
 		pan_screen(sys, key - LEFT);
 	if ('i' <= key && key <= 'l')
 		modify_coefficient(sys, key - 'i');
-
 	return (0);
 }
 

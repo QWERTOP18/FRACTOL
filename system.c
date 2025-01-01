@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:21 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 14:56:24 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/01 18:00:17 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ t_sys	*system_init(char *arg)
 {
 	t_sys	*sys;
 
-	sys = malloc(sizeof(t_sys));
+	sys = ft_calloc(1, sizeof(t_sys));
 	if (!sys)
 		system_exit(NULL, E_ALLOCATE);
 	sys->type = identify_arg(arg, sys);
 	sys->sup_iteri = DEFLT_ITER;
-	ft_memset(sys->iter,0,sizeof(sys->iter));
 	sys->mlx = mlx_init();
 	if (!sys->mlx)
 		system_exit(NULL, E_MLX_INIT);

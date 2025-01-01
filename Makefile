@@ -1,6 +1,6 @@
 CFLAGS      := -Werror -Wall #-Wextra
 
-SRCS        := main.c system.c hook_handler.c
+SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c
 
 OBJS        := $(SRCS:.c=.o)
 
