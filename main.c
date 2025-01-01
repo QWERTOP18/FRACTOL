@@ -1,5 +1,5 @@
 
-
+#include "libft.h"
 #include "system.h"
 #include "frac_hook.h"
 
@@ -22,12 +22,16 @@ void setup_hook(t_sys *sys)
 	mlx_loop_hook(sys->mlx, loop_hook, sys);
 }
 //REIZEMASKって画面サイズを変えるのかな
+
+
+
+
 int	main(int argc, char **argv)
 {
 	t_sys	*sys;
-
-
-	sys = system_init();
+	if (argc!=1)
+		ft_putendl_fd(ERRMSG,2);
+	sys = system_init(argv[1]);
     setup_hook(sys);
 
 	mlx_loop(sys->mlx);
