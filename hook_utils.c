@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:14:34 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 18:05:24 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 19:21:28 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <math.h>
 
 #define DEBUG 1
+
 void	zoom_screen(t_sys *sys, double ratio, int x, int y)
 {
 	t_screen	screen;
@@ -42,9 +43,6 @@ void	pan_screen(t_sys *sys, int id)
 	screen = sys->screen;
 	screen.base.re += dy[id] * screen.width * DELTA;
 	screen.base.im += dx[id] * screen.height * DELTA;
-#ifdef DEBUG
-	printf("Pan: (%f, %f)\n", screen.base.re, screen.base.im);
-#endif
 	sys->screen = screen;
 }
 
@@ -59,9 +57,6 @@ void	modify_coefficient(t_sys *sys, int id)
 	sys->coef.re += dx[id];
 	sys->coef.im = fmax(-1.0, fmin(1.0, sys->coef.im));
 	sys->coef.re = fmax(-1.0, fmin(1.0, sys->coef.re));
-#ifdef DEBUG
-	printf("Coefficient: (%f, %f)\n", sys->coef.re, sys->coef.im);
-#endif
 }
 
 void	modify_color_range(t_sys *sys, int id)
@@ -69,7 +64,4 @@ void	modify_color_range(t_sys *sys, int id)
 	(void)id;
 	ft_memset(sys->iter, 0, sizeof(sys->iter));
 	sys->sup_iteri = 0;
-#ifdef DEBUG
-	printf("COLOR\n");
-#endif
 }

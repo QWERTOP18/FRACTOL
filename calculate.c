@@ -6,14 +6,14 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 18:23:01 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 19:24:56 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
 #include <math.h>
 
-int	calc_mandelbrot(int y, int x, t_complex *c_num, t_sys *sys)
+int	calc_0(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int			i;
 	double		tmp;
@@ -32,7 +32,7 @@ int	calc_mandelbrot(int y, int x, t_complex *c_num, t_sys *sys)
 	while (i < ITER_STEP)
 	{
 		tmp = c_num->im * c_num->im - c_num->re * c_num->re;
-		c_num->im = 2.0 * c_num->im * c_num->re + z_num.im;
+		c_num->im = -2.0 * c_num->im * c_num->re + z_num.im;
 		c_num->re = tmp + z_num.re;
 		if (c_num->im * c_num->im + c_num->re * c_num->re >= 4)
 			return (i);
@@ -41,7 +41,7 @@ int	calc_mandelbrot(int y, int x, t_complex *c_num, t_sys *sys)
 	return (i);
 }
 
-int	calc_julia(int y, int x, t_complex *c_num, t_sys *sys)
+int	calc_1(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int		i;
 	double	tmp;
@@ -65,7 +65,8 @@ int	calc_julia(int y, int x, t_complex *c_num, t_sys *sys)
 	}
 	return (i);
 }
-int	calc_burningship(int y, int x, t_complex *c_num, t_sys *sys)
+
+int	calc_2(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int			i;
 	double		tmp;
@@ -93,16 +94,11 @@ int	calc_burningship(int y, int x, t_complex *c_num, t_sys *sys)
 	return (i);
 }
 
-//                                    \---double point???? todo
-
-#define DEBAG += 1
-
 void	calculate(t_sys *sys)
 {
 	int					y;
 	int					x;
-	static t_iterate_f	iterate[] = {calc_mandelbrot, calc_julia,
-			calc_burningship};
+	static t_iterate_f	iterate[] = {calc_0, calc_1, calc_2};
 
 	y = 0;
 	while (y < SCREEN_HEIGHT)
