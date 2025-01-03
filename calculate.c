@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 17:49:19 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:57:57 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 int	calc_mandelbrot(int y, int x, t_complex *c_num, t_sys *sys)
 {
-	int		i;
-	double	tmp;
+	int			i;
+	double		tmp;
+	t_complex	z_num;
 
 	i = 0;
 	if (sys->iter[y][x] == 0)
@@ -24,15 +25,15 @@ int	calc_mandelbrot(int y, int x, t_complex *c_num, t_sys *sys)
 		c_num->re = 0.0;
 		c_num->im = 0.0;
 	}
-	sys->coef.re = sys->screen.base.re + (double)x * sys->screen.width
+	z_num.re = sys->screen.base.re + (double)x * sys->screen.width
 		/ SCREEN_WIDTH;
-	sys->coef.im = sys->screen.base.im + (double)y * sys->screen.height
+	z_num.im = sys->screen.base.im + (double)y * sys->screen.height
 		/ SCREEN_HEIGHT;
 	while (i < ITER_STEP)
 	{
 		tmp = c_num->im * c_num->im - c_num->re * c_num->re;
-		c_num->im = 2.0 * c_num->im * c_num->re + sys->coef.im;
-		c_num->re = tmp + sys->coef.re;
+		c_num->im = 2.0 * c_num->im * c_num->re + z_num.im;
+		c_num->re = tmp + z_num.re;
 		if (c_num->im * c_num->im + c_num->re * c_num->re >= 4)
 			return (i);
 		i++;
