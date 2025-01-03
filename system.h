@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:09 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:07:02 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:35:56 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_sys
 	int			iter[SCREEN_HEIGHT][SCREEN_WIDTH];
 	t_complex	val[SCREEN_HEIGHT][SCREEN_WIDTH];
 	int			sup_iteri;
+
 }				t_sys;
 
 t_sys			*system_init(char *arg);

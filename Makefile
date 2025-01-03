@@ -54,8 +54,11 @@ fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
 
-val:
+mandelbrot:
 	$(VALGRIND) ./fractol mandelbrot
+
+julia:
+	$(VALGRIND) ./fractol julia
 
 re: fclean all
 

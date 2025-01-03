@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:16:15 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:56:40 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,20 @@ int	calc_mandelbrot(t_complex *c_num, t_sys *sys)
 
 int	calc_julia(t_complex *c_num, t_sys *sys)
 {
-	return (1);
+	int		i;
+	double	tmp;
+
+	i = 0;
+	while (i < ITER_STEP)
+	{
+		tmp = c_num->im * c_num->im - c_num->re * c_num->re;
+		c_num->im = 2.0 * c_num->im * c_num->re + sys->coef.im;
+		c_num->re = tmp + sys->coef.re;
+		if (c_num->im * c_num->im + c_num->re * c_num->re >= 4)
+			return (i);
+		i++;
+	}
+	return (i);
 }
 //                                    \---double point???? todo
 typedef int	(*t_iterate_f)(t_complex *c_num, t_sys *sys);
@@ -63,10 +76,6 @@ void	calculate(t_sys *sys)
 			// sys->iter[x][y] += (*iterate[sys->type])(&sys->val[y][x],
 			//		sys);
 			render_pixel(sys, x, y, determine_color(sys->iter[x][y], sys));
-			// #ifdef DEBUG
-			// 			printf("iter %d\n", sys->iter[x][y]);
-			// 			fflush(stdout);
-			// #endif
 			x++;
 		}
 		y++;

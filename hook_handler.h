@@ -33,4 +33,6 @@ void	pan_screen(t_sys *sys, int id);
 void	zoom_screen(t_sys *sys, double ratio, int x, int y);
 void	modify_coefficient(t_sys *sys, int id);
 
+void	modify_color_range(t_sys *sys, int id);
+
 #endif

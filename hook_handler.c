@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:53 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:08:43 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:48:02 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,24 @@ int	mouse_handler(int button, int x, int y, t_sys *sys)
 
 int	key_handler(int key, t_sys *sys)
 {
-	printf("key %X\n", key);
 	if (key == ESCAPE)
 		exit_handler(sys);
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 		pan_screen(sys, key - LEFT);
 	if ('i' <= key && key <= 'l')
 		modify_coefficient(sys, key - 'i');
+	if (key == 'c')
+		modify_color_range(sys, key - 'c');
 	return (0);
 }
 
 int	exit_handler(t_sys *sys)
 {
+	mlx_destroy_image(sys->mlx, sys->img.img);
 	mlx_destroy_window(sys->mlx, sys->win);
+#ifdef DEBUG
+	printf("Exit handler called\n");
+#endif
 	system_exit(sys, 0);
 	return (0);
 }
