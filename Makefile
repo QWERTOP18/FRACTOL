@@ -6,8 +6,8 @@ DFLAGS     := -DDEBUG
 
 
 
-SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c render.c
-
+SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c render.c calc_sierpinski.c
+ 
 OBJS        := $(SRCS:.c=.o)
 
 NAME        := fractol

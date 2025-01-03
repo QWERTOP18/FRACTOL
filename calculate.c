@@ -6,13 +6,15 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 19:24:56 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 19:47:54 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "calculate.h"
 #include "system.h"
 #include <math.h>
 
+/* MANDELBROT */
 int	calc_0(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int			i;
@@ -40,7 +42,7 @@ int	calc_0(int y, int x, t_complex *c_num, t_sys *sys)
 	}
 	return (i);
 }
-
+/* JULIA */
 int	calc_1(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int		i;
@@ -65,7 +67,7 @@ int	calc_1(int y, int x, t_complex *c_num, t_sys *sys)
 	}
 	return (i);
 }
-
+/* BURNIGSHIP*/
 int	calc_2(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int			i;
@@ -98,7 +100,7 @@ void	calculate(t_sys *sys)
 {
 	int					y;
 	int					x;
-	static t_iterate_f	iterate[] = {calc_0, calc_1, calc_2};
+	static t_iterate_f	iterate[] = {calc_0, calc_1, calc_2, calc_3};
 
 	y = 0;
 	while (y < SCREEN_HEIGHT)
@@ -106,7 +108,7 @@ void	calculate(t_sys *sys)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			if (sys->iter[y][x] == sys->sup_iteri)
+			if (sys->iter[y][x] == sys->sup_iteri - ITER_STEP)
 				sys->iter[y][x] += (*iterate[sys->type])(y, x, &sys->val[y][x],
 						sys);
 			render_pixel(sys, y, x, determine_color(sys->iter[x][y], sys));

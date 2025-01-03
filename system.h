@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:09 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 19:24:17 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 19:40:57 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define E_WINDOW_CREATE -3
 # define E_INVALID_INPUT -4
 
-# define ERRMSG "PLEASE TYPE\n\t* mandelbrot\n\t* julia\n\t* burningship\n"
+# define ERRMSG "PLEASE TYPE\n\t* mandelbrot\n\t* julia\n\t* burningship\n\t *sierpinski\n"
 
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
@@ -40,6 +40,7 @@
 # define MANDELBROT 0
 # define JULIA 1
 # define BURNINGSHIP 2
+# define SIERPINSKI 3
 
 typedef struct s_simg
 {
@@ -79,7 +80,6 @@ typedef struct s_sys
 
 }				t_sys;
 
-typedef int		(*t_iterate_f)(int y, int x, t_complex *c_num, t_sys *sys);
 t_sys			*system_init(char *arg);
 void			system_exit(t_sys *sys, int status);
 
