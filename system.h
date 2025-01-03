@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:09 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 17:16:35 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:24:10 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_sys
 
 }				t_sys;
 
-typedef int		(*t_iterate_f)(t_complex *c_num, t_sys *sys);
+typedef int		(*t_iterate_f)(int y, int x, t_complex *c_num, t_sys *sys);
 t_sys			*system_init(char *arg);
 void			system_exit(t_sys *sys, int status);
 

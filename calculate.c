@@ -6,23 +6,33 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 17:12:42 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:49:19 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
+#include <math.h>
 
-int	calc_mandelbrot(t_complex *c_num, t_sys *sys)
+int	calc_mandelbrot(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int		i;
 	double	tmp;
 
 	i = 0;
+	if (sys->iter[y][x] == 0)
+	{
+		c_num->re = 0.0;
+		c_num->im = 0.0;
+	}
+	sys->coef.re = sys->screen.base.re + (double)x * sys->screen.width
+		/ SCREEN_WIDTH;
+	sys->coef.im = sys->screen.base.im + (double)y * sys->screen.height
+		/ SCREEN_HEIGHT;
 	while (i < ITER_STEP)
 	{
 		tmp = c_num->im * c_num->im - c_num->re * c_num->re;
-		c_num->im = 2.0 * c_num->im * c_num->re;
-		c_num->re = tmp;
+		c_num->im = 2.0 * c_num->im * c_num->re + sys->coef.im;
+		c_num->re = tmp + sys->coef.re;
 		if (c_num->im * c_num->im + c_num->re * c_num->re >= 4)
 			return (i);
 		i++;
@@ -30,12 +40,19 @@ int	calc_mandelbrot(t_complex *c_num, t_sys *sys)
 	return (i);
 }
 
-int	calc_julia(t_complex *c_num, t_sys *sys)
+int	calc_julia(int y, int x, t_complex *c_num, t_sys *sys)
 {
 	int		i;
 	double	tmp;
 
 	i = 0;
+	if (sys->iter[y][x] == 0)
+	{
+		sys->val[y][x].re = sys->screen.base.re + (double)x * sys->screen.width
+			/ SCREEN_WIDTH;
+		sys->val[y][x].im = sys->screen.base.im + (double)y * sys->screen.height
+			/ SCREEN_HEIGHT;
+	}
 	while (i < ITER_STEP)
 	{
 		tmp = c_num->im * c_num->im - c_num->re * c_num->re;
@@ -48,7 +65,6 @@ int	calc_julia(t_complex *c_num, t_sys *sys)
 	return (i);
 }
 //                                    \---double point???? todo
-typedef int	(*t_iterate_f)(t_complex *c_num, t_sys *sys);
 
 #define DEBAG += 1
 
@@ -64,18 +80,15 @@ void	calculate(t_sys *sys)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			if (sys->iter[x][y] == 0)
-			{
-				sys->val[y][x].re = sys->screen.base.re + (double)x
-					* sys->screen.width / SCREEN_WIDTH;
-				sys->val[y][x].im = sys->screen.base.im + (double)y
-					* sys->screen.height / SCREEN_HEIGHT;
-			}
-			if (sys->iter[x][y] == sys->sup_iteri)
-				sys->iter[x][y] += (*iterate[sys->type])(&sys->val[y][x], sys);
-			render_pixel(sys, x, y, determine_color(sys->iter[x][y], sys));
+			if (sys->iter[y][x] == sys->sup_iteri)
+				sys->iter[y][x] += (*iterate[sys->type])(y, x, &sys->val[y][x],
+						sys);
+			render_pixel(sys, y, x, determine_color(sys->iter[x][y], sys));
 			x++;
 		}
 		y++;
 	}
+	sys->sup_iteri = fmin(1000, sys->sup_iteri + ITER_STEP);
+	if (sys->sup_iteri < 200)
+		printf("iter %d\n", sys->sup_iteri);
 }
