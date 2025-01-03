@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 19:22:36 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:16:15 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,22 @@ void	calculate(t_sys *sys)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
+			if (sys->iter[x][y] == 0)
+			{
+				sys->val[y][x].re = sys->screen.base.re + (double)x
+					* sys->screen.width / SCREEN_WIDTH;
+				sys->val[y][x].im = sys->screen.base.im + (double)y
+					* sys->screen.height / SCREEN_HEIGHT;
+			}
 			if (sys->iter[x][y] == sys->sup_iteri)
-				// sys->iter[x][y] += (*iterate[sys->type])(&sys->val[y][x],
-				//		sys);
 				sys->iter[x][y] = (*iterate[sys->type])(&sys->val[y][x], sys);
+			// sys->iter[x][y] += (*iterate[sys->type])(&sys->val[y][x],
+			//		sys);
 			render_pixel(sys, x, y, determine_color(sys->iter[x][y], sys));
-#ifdef DEBUG
-			printf("iter %d\n", sys->iter[x][y]);
-#endif
+			// #ifdef DEBUG
+			// 			printf("iter %d\n", sys->iter[x][y]);
+			// 			fflush(stdout);
+			// #endif
 			x++;
 		}
 		y++;

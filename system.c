@@ -6,13 +6,14 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:21 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/01 19:18:25 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:07:32 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
 
 int		identify_arg(char *arg, t_sys *sys);
+
 void	system_exit(t_sys *sys, int status)
 {
 	if (status == E_INVALID_INPUT)

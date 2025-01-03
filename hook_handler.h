@@ -18,22 +18,19 @@
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 
+# define DELTA 0.01
 
-#define DELTA 0.01
-
-
-int	exit_handler(t_sys *sys);
-int	key_handler(int key, t_sys *sys);
-int	mouse_handler(int button, int x, int y, t_sys *sys);
-int	loop_handler(t_sys *sys);
-
+int		exit_handler(t_sys *sys);
+int		key_handler(int key, t_sys *sys);
+int		mouse_handler(int button, int x, int y, t_sys *sys);
+int		loop_handler(t_sys *sys);
 
 /**** **** **** **** ***** **** **** **** ****/
 /**** **** **** **** UTILS **** **** **** ****/
 /**** **** **** **** ***** **** **** **** ****/
 
-void pan_screen(t_sys * sys, int id);
-void zoom_screen(t_sys * sys, double ratio ,int x, int y);
-void modify_coefficient(t_sys * sys, int id);
+void	pan_screen(t_sys *sys, int id);
+void	zoom_screen(t_sys *sys, double ratio, int x, int y);
+void	modify_coefficient(t_sys *sys, int id);
 
 #endif
