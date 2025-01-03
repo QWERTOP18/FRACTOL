@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:09 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 17:24:10 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:09:55 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
 
-# define DEFLT_ITER 10
-# define ITER_STEP 20
+# define ITER_STEP 100
 
 # define MANDELBROT 0
 # define JULIA 1

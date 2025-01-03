@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 17:57:57 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:23:01 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	calc_julia(int y, int x, t_complex *c_num, t_sys *sys)
 	i = 0;
 	if (sys->iter[y][x] == 0)
 	{
-		sys->val[y][x].re = sys->screen.base.re + (double)x * sys->screen.width
+		c_num->re = sys->screen.base.re + (double)x * sys->screen.width
 			/ SCREEN_WIDTH;
-		sys->val[y][x].im = sys->screen.base.im + (double)y * sys->screen.height
+		c_num->im = sys->screen.base.im + (double)y * sys->screen.height
 			/ SCREEN_HEIGHT;
 	}
 	while (i < ITER_STEP)
@@ -65,6 +65,34 @@ int	calc_julia(int y, int x, t_complex *c_num, t_sys *sys)
 	}
 	return (i);
 }
+int	calc_burningship(int y, int x, t_complex *c_num, t_sys *sys)
+{
+	int			i;
+	double		tmp;
+	t_complex	z_num;
+
+	i = 0;
+	if (sys->iter[y][x] == 0)
+	{
+		c_num->re = 0.0;
+		c_num->im = 0.0;
+	}
+	z_num.re = sys->screen.base.re + (double)x * sys->screen.width
+		/ SCREEN_WIDTH;
+	z_num.im = sys->screen.base.im + (double)y * sys->screen.height
+		/ SCREEN_HEIGHT;
+	while (i < ITER_STEP)
+	{
+		tmp = c_num->im * c_num->im - c_num->re * c_num->re;
+		c_num->im = fabs(2.0 * c_num->im * c_num->re) + z_num.im;
+		c_num->re = tmp + z_num.re;
+		if (c_num->im * c_num->im + c_num->re * c_num->re >= 4)
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
 //                                    \---double point???? todo
 
 #define DEBAG += 1
@@ -73,7 +101,8 @@ void	calculate(t_sys *sys)
 {
 	int					y;
 	int					x;
-	static t_iterate_f	iterate[] = {calc_mandelbrot, calc_julia};
+	static t_iterate_f	iterate[] = {calc_mandelbrot, calc_julia,
+			calc_burningship};
 
 	y = 0;
 	while (y < SCREEN_HEIGHT)

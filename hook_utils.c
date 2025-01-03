@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:14:34 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 17:48:43 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:05:24 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	zoom_screen(t_sys *sys, double ratio, int x, int y)
 
 void	pan_screen(t_sys *sys, int id)
 {
-	static double	dy[4] = {0, 1, 0, -1};
-	static double	dx[4] = {1, 0, -1, 0};
+	static double	dx[4] = {0, 1, 0, -1};
+	static double	dy[4] = {1, 0, -1, 0};
 	t_screen		screen;
 
 	ft_memset(sys->iter, 0, sizeof(sys->iter));
