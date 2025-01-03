@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:02:51 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:06:06 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:14:55 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	setup_hook(t_sys *sys)
 
 int	main(int argc, char **argv)
 {
-	t_sys *sys;
+	t_sys	*sys;
+
 	if (argc != 2)
 		system_exit(NULL, E_INVALID_INPUT);
 	sys = system_init(argv[1]);
 	setup_hook(sys);
-
 	mlx_loop(sys->mlx);
 	system_exit(sys, 0);
 }

@@ -60,6 +60,10 @@ mandelbrot:
 julia:
 	$(VALGRIND) ./fractol julia
 
+mlx:
+	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
+
+
 re: fclean all
 
 .PHONY: all clean fclean re

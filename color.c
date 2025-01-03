@@ -6,17 +6,18 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:56 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:08:49 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:12:01 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "system.h"
 
-unsigned	determine_color(int iter, t_sys *sys)
+unsigned int	determine_color(int iter, t_sys *sys)
 {
-	unsigned r;
-	unsigned g;
-	unsigned b;
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+
 	if (iter < 20)
 		return (0);
 	r = 0x00;

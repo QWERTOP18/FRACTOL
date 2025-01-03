@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:56:40 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:12:42 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void	calculate(t_sys *sys)
 					* sys->screen.height / SCREEN_HEIGHT;
 			}
 			if (sys->iter[x][y] == sys->sup_iteri)
-				sys->iter[x][y] = (*iterate[sys->type])(&sys->val[y][x], sys);
-			// sys->iter[x][y] += (*iterate[sys->type])(&sys->val[y][x],
-			//		sys);
+				sys->iter[x][y] += (*iterate[sys->type])(&sys->val[y][x], sys);
 			render_pixel(sys, x, y, determine_color(sys->iter[x][y], sys));
 			x++;
 		}

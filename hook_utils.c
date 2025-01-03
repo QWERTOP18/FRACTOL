@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/03 17:14:34 by ymizukam          #+#    #+#             */
+/*   Updated: 2025/01/03 17:15:14 by ymizukam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "hook_handler.h"
 #include <math.h>
 
@@ -55,12 +67,9 @@ void	modify_coefficient(t_sys *sys, int id)
 void	modify_color_range(t_sys *sys, int id)
 {
 	(void)id;
-
 	ft_memset(sys->iter, 0, sizeof(sys->iter));
 	sys->sup_iteri = 0;
-
 #ifdef DEBUG
 	printf("COLOR\n");
 #endif
-
 }

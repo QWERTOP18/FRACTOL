@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:09 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:35:56 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:16:35 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_sys
 
 }				t_sys;
 
+typedef int		(*t_iterate_f)(t_complex *c_num, t_sys *sys);
 t_sys			*system_init(char *arg);
 void			system_exit(t_sys *sys, int status);
 
@@ -87,6 +88,6 @@ void			calculate(t_sys *sys);
 
 void			render_pixel(t_sys *sys, int x, int y, int color);
 
-unsigned		determine_color(int iter, t_sys *sys);
+unsigned int	determine_color(int iter, t_sys *sys);
 
 #endif

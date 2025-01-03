@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:21 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 16:43:47 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:14:46 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	identify_arg(char *arg, t_sys *sys)
 		return (JULIA);
 	if (ft_strncmp(arg, "burningship", ft_strlen(arg)) == 0)
 		return (BURNINGSHIP);
-
 	system_exit(sys, E_INVALID_INPUT);
 	return (0);
 }

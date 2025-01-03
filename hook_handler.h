@@ -1,5 +1,17 @@
-#ifndef FRACTOL_HOOK
-# define FRACTOL_HOOK
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook_handler.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/03 17:13:15 by ymizukam          #+#    #+#             */
+/*   Updated: 2025/01/03 17:13:44 by ymizukam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef HOOK_HANDLER_H
+# define HOOK_HANDLER_H
 
 # include "system.h"
 
@@ -32,7 +44,6 @@ int		loop_handler(t_sys *sys);
 void	pan_screen(t_sys *sys, int id);
 void	zoom_screen(t_sys *sys, double ratio, int x, int y);
 void	modify_coefficient(t_sys *sys, int id);
-
 void	modify_color_range(t_sys *sys, int id);
 
 #endif
