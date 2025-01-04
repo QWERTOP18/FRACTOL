@@ -1,4 +1,4 @@
-CFLAGS      := -Werror -Wall #-Wextra
+CFLAGS      := -Werror -Wall -Wextra
 DFLAGS     := -DDEBUG
 
 
@@ -6,7 +6,7 @@ DFLAGS     := -DDEBUG
 
 
 
-SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c render.c calc_sierpinski.c
+SRCS        := main.c system.c hook_handler.c hook_utils.c calculate.c color.c render.c
  
 OBJS        := $(SRCS:.c=.o)
 
@@ -19,7 +19,7 @@ MLX_DIR     := minilibx-linux
 LIBFT_DIR   := libft
 LIBFT       := libft/libft.a
 IFLAGS      := -I$(LIBFT_DIR) -I$(MLX_DIR)
-LFLAGS      := -L$(MLX_DIR) -lmlx -lXext -lX11
+LFLAGS      := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 all: $(NAME) 
 

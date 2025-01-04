@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:14:34 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/03 19:21:28 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:07:44 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void	modify_coefficient(t_sys *sys, int id)
 
 void	modify_color_range(t_sys *sys, int id)
 {
+	static unsigned int	range[] = {0x050703, 0x070707, 0x80FF80, 0x804080};
+	static int			i = 0;
+
+	sys->sup_iteri = 0;
+	sys->col = range[(i++) % sizeof(range)];
 	(void)id;
 	ft_memset(sys->iter, 0, sizeof(sys->iter));
-	sys->sup_iteri = 0;
 }

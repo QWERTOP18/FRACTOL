@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:53 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/04 16:22:11 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:44:51 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 
 int	mouse_handler(int button, int x, int y, t_sys *sys)
 {
-	t_complex	z_num;
-
-	// printf("key %X,x %d,y %d\n", button, x, y);
-	z_num.re = sys->screen.base.re + (double)x * sys->screen.width
-		/ SCREEN_WIDTH;
-	z_num.im = sys->screen.base.im + (double)y * sys->screen.height
-		/ SCREEN_HEIGHT;
-	printf("locate %f %f\nbase %f %f size %f\n", z_num.re, z_num.im,
-		sys->screen.base.re, sys->screen.base.im, sys->screen.height);
 	if (button == SCROLL_UP)
 		zoom_screen(sys, 1.25, x, y);
 	if (button == SCROLL_DOWN)

@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/04 16:30:01 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:27:09 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	calc_0(int y, int x, t_complex *c_num, t_sys *sys)
 	}
 	return (i);
 }
+
 /* JULIA */
 int	calc_1(int y, int x, t_complex *c_num, t_sys *sys)
 {
@@ -67,6 +68,7 @@ int	calc_1(int y, int x, t_complex *c_num, t_sys *sys)
 	}
 	return (i);
 }
+
 /* BURNIGSHIP*/
 int	calc_2(int y, int x, t_complex *c_num, t_sys *sys)
 {
@@ -100,7 +102,7 @@ void	calculate(t_sys *sys)
 {
 	int					y;
 	int					x;
-	static t_iterate_f	iterate[] = {calc_0, calc_1, calc_2, calc_3};
+	static t_iterate_f	iterate[] = {calc_0, calc_1, calc_2};
 
 	y = 0;
 	while (y < SCREEN_HEIGHT)
