@@ -14,8 +14,8 @@ NAME        := fractol
 CC          := cc 
 VALGRIND    := valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q
 
-MLX			:= $(MLX_DIR)/libmlx.a
 MLX_DIR     := minilibx-linux
+MLX			:= $(MLX_DIR)/libmlx.a
 LIBFT_DIR   := libft
 LIBFT       := libft/libft.a
 IFLAGS      := -I$(LIBFT_DIR) -I$(MLX_DIR)
@@ -34,11 +34,12 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(DFLAGS) $(IFLAGS) -c $< -o $@
 	
 
-$(MLX):  $(MLX_DIR)
+
+$(MLX): | $(MLX_DIR)
 	$(MAKE) -C $(MLX_DIR)
 
 
-$(LIBFT):  $(LIBFT_DIR)/Makefile
+$(LIBFT): | $(LIBFT_DIR)
 	$(MAKE) -C $(LIBFT_DIR)
 
 
@@ -60,6 +61,11 @@ julia:
 mlx:
 	@echo "Cloning minilibx-linux..."
 	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
+
+libft:
+	@echo "Cloning libft..."
+    
+
 
 
 re: fclean all
