@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:58 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/04 17:27:09 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/05 19:01:00 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,5 @@ void	calculate(t_sys *sys)
 		}
 		y++;
 	}
-	sys->sup_iteri = fmin(1000, sys->sup_iteri + ITER_STEP);
-	if (sys->sup_iteri < 200)
-		printf("iter %d\n", sys->sup_iteri);
+	sys->sup_iteri = fmin(INT_MAX - ITER_STEP, sys->sup_iteri + ITER_STEP);
 }

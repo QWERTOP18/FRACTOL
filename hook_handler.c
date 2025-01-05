@@ -6,7 +6,7 @@
 /*   By: ymizukam <ymizukam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:03:53 by ymizukam          #+#    #+#             */
-/*   Updated: 2025/01/04 16:44:51 by ymizukam         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:33:48 by ymizukam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	mouse_handler(int button, int x, int y, t_sys *sys)
 {
 	if (button == SCROLL_UP)
-		zoom_screen(sys, 1.25, x, y);
+		zoom_screen(sys, 1 / 1.1, x, y);
 	if (button == SCROLL_DOWN)
-		zoom_screen(sys, 0.8, x, y);
+		zoom_screen(sys, 1.1, x, y);
 	return (0);
 }
 

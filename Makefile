@@ -1,5 +1,5 @@
-CFLAGS      := -Werror -Wall -Wextra
-DFLAGS     := -DDEBUG
+CFLAGS      := -Werror -Wall -Wextra -O2
+DFLAGS      := 
 
 
 
@@ -34,14 +34,11 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(DFLAGS) $(IFLAGS) -c $< -o $@
 	
 
-$(MLX): | $(MLX_DIR)
+$(MLX):  $(MLX_DIR)
 	$(MAKE) -C $(MLX_DIR)
 
-$(MLX_DIR):
-	@echo "Cloning minilibx-linux..."
-	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
 
-$(LIBFT): | $(LIBFT_DIR)/Makefile
+$(LIBFT):  $(LIBFT_DIR)/Makefile
 	$(MAKE) -C $(LIBFT_DIR)
 
 
@@ -61,6 +58,7 @@ julia:
 	$(VALGRIND) ./fractol julia
 
 mlx:
+	@echo "Cloning minilibx-linux..."
 	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
 
 
